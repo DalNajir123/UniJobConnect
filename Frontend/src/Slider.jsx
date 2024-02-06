@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react'
 import {ChevronLeft,ChevronRight} from 'react-feather'
 
 const Slider = ({children: slide, autoSlide = false, autoSlideInterval = 2000}) => {
+  // const test = document.getElementById("slide");
+  // test.addEventListener("mouseenter",()=>{
+  //   alert("helloo..");
+  // })
+  // const hover = ()=>{
+  // }
   const [current,setCurrent] = useState(0)
 
   const prev = () => setCurrent((current)=>(current === 0 ? slide.length - 1 : current - 1))
@@ -16,7 +22,7 @@ const Slider = ({children: slide, autoSlide = false, autoSlideInterval = 2000}) 
 
   return (
     <div className='opacity-95 overflow-hidden relative rounded-2xl  border-b-8 border-r-8 border-purple-600 shadow-xl shadow-zinc-800'>
-      <div className='flex transition-transform ease-out duration-700' style={{transform:`translateX(-${current * 100}%)`}}>
+      <div id='slide' onMouseEnter={hover} className='flex transition-transform ease-out duration-700' style={{transform:`translateX(-${current * 100}%)`}}>
         {slide}
       </div>
 
