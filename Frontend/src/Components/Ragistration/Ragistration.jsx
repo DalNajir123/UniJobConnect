@@ -23,6 +23,10 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle registration logic here
+    if (formData.password != formData.confirmPassword ) {
+      alert("Enter Same Password")
+      return
+    }
     try {
       const responce = await axios.post('http://localhost:8080/user/sign-up',formData)
       if (responce.data.status === 'success') {
@@ -91,12 +95,14 @@ const SignUp = () => {
             phone
           </label> */}
           <input
-            type="number"
+            type="text"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
             className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Phone Number"
+            minLength="10"
+            maxLength="10"
             required
           />
         </div>
