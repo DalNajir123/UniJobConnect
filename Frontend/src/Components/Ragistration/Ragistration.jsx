@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Logo from '../Logo/Logo';
-
+import { useNavigate } from 'react-router-dom'
 const SignUp = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -11,7 +11,7 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,7 +22,6 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle registration logic here
     if (formData.password != formData.confirmPassword) {
       alert("Enter Same Password")
       return
@@ -30,15 +29,17 @@ const SignUp = () => {
     try {
       const responce = await axios.post('http://localhost:8080/user/sign-up', formData)
       console.log(responce);
-      if (responce.data.success == "true") {
+      if (responce.data.success == true) {
         alert(responce.data.message);
+        navigate('/login');
+
       }
       //  else {
       //   alert('user not create...');
       //   console.log(responce.data.message);
       // }
     } catch (error) {
-      alert('user not create... ccatch');
+      alert('user not create...');
     }
     // console.log('Form submitted:', formData);
   };
