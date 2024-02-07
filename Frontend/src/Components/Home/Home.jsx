@@ -1,28 +1,26 @@
-import React from 'react';
-import Slider from "../../Slider"
-import "./Home.css"
+import React from "react";
+import Slider from "../../Slider";
+import "./Home.css";
 
-const slide =[
-  "./1.webp",
-  "./2.webp",
-]
+const slide = ["./1.webp", "./2.webp"];
 
 const HomePage = () => {
   return (
     <div className="bg-purple-200">
-
       <section className="bg-purple-300 text-white py-16 pt-3">
         {/* <div id='top-text'>
           <h1 id="top" data-text="Explore Opportunities With Top Companies!">Explore Opportunities With Top Companies! </h1>
         </div> */}
 
-        <div className='text-center mb-8 '>
-          <h1 class="animated-text ">
-            <span className='shadow-xl shadow-fuchsia-700'>Explore Opportunities With Top Companies!</span>
+        <div className="text-center mb-8">
+          <h1 className="animated-text ">
+            <span className="shadow-xl shadow-fuchsia-700">
+              Explore Opportunities With Top Companies!
+            </span>
           </h1>
         </div>
-        
-        <div className='flex justify-center items-center  '>
+
+        {/* <div className='flex justify-center items-center  '>
           <div className='w-[60%] '>
             <Slider autoSlide={false}>
               {slide.map((s)=>(
@@ -30,7 +28,7 @@ const HomePage = () => {
               ))}
             </Slider>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <section className="bg-purple-400 text-white py-16">
@@ -48,9 +46,7 @@ const HomePage = () => {
                 placeholder="Search for jobs..."
                 className="w-full p-3 focus:outline-offset-2 from-fuchsia-950"
               />
-              <button className="bg-blue-600 text-white p-3">
-                Search
-              </button>
+              <button className="bg-blue-600 text-white p-3">Search</button>
             </div>
           </div>
         </div>
@@ -65,9 +61,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Featured Job Card Component */}
             <div className="bg-white p-6 rounded shadow">
-              <h3 className="text-xl font-semibold mb-2">
-                Frontend Developer
-              </h3>
+              <h3 className="text-xl font-semibold mb-2">Frontend Developer</h3>
               <p className="text-gray-700 mb-4">Company ABC</p>
               <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                 Apply Now
