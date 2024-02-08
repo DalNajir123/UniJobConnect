@@ -22,9 +22,9 @@ const HomePage = () => {
 
         <div className='flex justify-center items-center  '>
           <div className='w-[60%] '>
-            <Slider autoSlide={false}>
-              {slide.map((s) => (
-                <img src={s} />
+            <Slider autoSlide={true}>
+              {slide.map((s, i) => (
+                <img key={i} src={s} />
               ))}
             </Slider>
           </div>

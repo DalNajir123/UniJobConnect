@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Logo from '../Logo/Logo';
 import axios from 'axios';
+import { toast } from 'react-toastify'
 import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!email || !password) {
-      alert('Please enter both email and password.');
+      toast.error('Please enter both email and password.');
       return;
     }
 
@@ -23,15 +24,15 @@ const Login = () => {
 
       // Handle the authentication result
       if (response.data.success == true) {
-        alert('Login successful');
+        toast.success('Login Successful Welcome ');
         navigate('/')
         console.log(response.data.data.token);
         localStorage.setItem(response.data.data, response.data.data.token)
       } else {
-        alert(response.data.message);
+        toast.error(response.data.message);
       }
     } catch (error) {
-      alert('Login Field Please Check Email or Passord');
+      toast.error('Login Field Please Check Email or Password');
     }
   };
 

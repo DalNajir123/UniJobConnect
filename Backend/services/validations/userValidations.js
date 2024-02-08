@@ -60,7 +60,7 @@ const userSignUpValidation = [
   check("password", "Invalid Password")
     .not()
     .notEmpty()
-    .isLength({ min: 4, max: 10 }),
+    .isLength({ min: 8, max: 16 }),
 ];
 
 const userLoginValidation = [
