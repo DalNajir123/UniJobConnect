@@ -83,7 +83,7 @@ const Login = () => {
             </button>
           </div>
           <div>
-            <h1>You Don't Have Account <Link to="/Ragistration">Create Accoount</Link></h1>
+            <h1 className='text-center text-slate-950 text-sm hover:text-white'>You Don't Have Account ? <Link to="/Ragistration" className='text-white font-extrabold hover:text-xl hover:text-slate-900'>Create Accoount</Link></h1>
           </div>
         </form>
       </div>
