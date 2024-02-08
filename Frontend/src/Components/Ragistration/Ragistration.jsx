@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Logo from '../Logo/Logo';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const SignUp = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -144,6 +144,9 @@ const SignUp = () => {
           >
             Register
           </button>
+          <div>
+            <h1>Already Have Account <Link to="/login">Login</Link></h1>
+          </div>
         </form>
       </div>
     </div>

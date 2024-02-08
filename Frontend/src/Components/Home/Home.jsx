@@ -20,15 +20,15 @@ const HomePage = () => {
           </h1>
         </div>
 
-        {/* <div className='flex justify-center items-center  '>
+        <div className='flex justify-center items-center  '>
           <div className='w-[60%] '>
             <Slider autoSlide={false}>
-              {slide.map((s)=>(
-                <img  src={s} />
+              {slide.map((s) => (
+                <img src={s} />
               ))}
             </Slider>
           </div>
-        </div> */}
+        </div>
       </section>
 
       <section className="bg-purple-400 text-white py-16">

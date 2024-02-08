@@ -2,45 +2,44 @@
 import React, { useState } from 'react';
 import Logo from '../Logo/Logo';
 import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Validate the input (you might want to add more validation logic)
     if (!email || !password) {
       alert('Please enter both email and password.');
       return;
     }
 
     try {
-      // Make a request to your server for authentication
       const response = await axios.post('http://localhost:8080/user/login', { email, password });
+      console.log(response);
 
-      // Assuming the server responds with a JSON containing authentication details
-      const data = await response.json();
 
       // Handle the authentication result
-      if (response.ok) {
-        // Authentication successful, you can redirect or set some state
-        console.log('Login successful');
+      if (response.data.success == true) {
+        alert('Login successful');
+        navigate('/')
+        console.log(response.data.data.token);
+        localStorage.setItem(response.data.data, response.data.data.token)
       } else {
-        // Authentication failed, show an error message
-        console.error('Login failed:', data.message);
+        alert(response.data.message);
       }
     } catch (error) {
-      console.error('Error during login:', error.message);
+      alert('Login Field Please Check Email or Passord');
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-purple-200">
       <div className="max-w-md w-full space-y-8 p-8 bg-purple-400  rounded-md">
-      
-        <h2 className="text-3xl font-bold text-center text-gray-800"><Logo/>Login</h2>
+
+        <h2 className="text-3xl font-bold text-center text-gray-800"><Logo />Login</h2>
         <form className="mt-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div>
             <label htmlFor="email" className="sr-only">
@@ -82,6 +81,9 @@ const Login = () => {
             >
               Login
             </button>
+          </div>
+          <div>
+            <h1>You Don't Have Account <Link to="/Ragistration">Create Accoount</Link></h1>
           </div>
         </form>
       </div>
