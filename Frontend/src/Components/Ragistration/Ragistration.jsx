@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Logo from '../Logo/Logo';
-import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import React, { useState } from "react";
+import axios from "axios";
+import Logo from "../Logo/Logo";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -24,15 +24,18 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password != formData.confirmPassword) {
-      toast.error("Enter Same Password")
-      return
+      toast.error("Enter Same Password");
+      return;
     }
     try {
-      const responce = await axios.post('http://localhost:8080/user/sign-up', formData)
+      const responce = await axios.post(
+        "http://localhost:8080/user/sign-up",
+        formData
+      );
       // console.log(responce);
       if (responce.data.success == true) {
         toast.success(responce.data.message);
-        navigate('/login');
+        navigate("/login");
       }
     } catch (error) {
       toast.error(error.response.data.errors[0].msg);
@@ -46,7 +49,11 @@ const SignUp = () => {
           className=" mt-5 space-y-6 rounded shadow-md w-96"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-3xl font-bold text-center text-gray-800 mt-5"> <Logo />Registration</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-800 mt-5">
+            {" "}
+            <Logo />
+            Registration
+          </h2>
 
           <div className="mb-4">
             <input
@@ -133,12 +140,20 @@ const SignUp = () => {
             Register
           </button>
           <div>
-            <h1 className='text-center text-slate-950 text-lg hover:text-white'>Already Have Account ? <Link to="/login" className='text-white font-extrabold hover:text-2xl hover:text-slate-900'>Login</Link></h1>
+            <h1 className="text-center text-slate-950 text-lg hover:text-white">
+              Already Have Account ?{" "}
+              <Link
+                to="/login"
+                className="text-white font-extrabold hover:text-2xl hover:text-slate-900"
+              >
+                Login
+              </Link>
+            </h1>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignUp;
