@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "../../Slider";
 import "./Home.css";
+import {Link} from 'react-router-dom'
 
 const slide = ["./1.webp", "./2.webp"];
 
@@ -8,10 +9,6 @@ const HomePage = () => {
   return (
     <div className="bg-purple-200">
       <section className="bg-purple-300 text-white py-16 pt-3">
-        {/* <div id='top-text'>
-          <h1 id="top" data-text="Explore Opportunities With Top Companies!">Explore Opportunities With Top Companies! </h1>
-        </div> */}
-
         <div className="text-center mb-8">
           <h1 className="animated-text ">
             <span className="shadow-xl shadow-fuchsia-700">
@@ -30,6 +27,10 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      <Link to="/navbar">
+        Admine Navbar
+      </Link>
 
       <section className="bg-purple-400 text-white py-16">
         <div className="container mx-auto text-center">
@@ -80,13 +81,17 @@ const HomePage = () => {
             Create an account or login to explore more job opportunities.
           </p>
           <div>
+          <Link to="/Ragistration">
             <button className="bg-white text-blue-500 py-3 px-6 rounded-full font-semibold hover:bg-blue-100">
-              Create Account
+                Create Account 
             </button>
+          </Link>
             <span className="mx-4">or</span>
+          <Link to="/login">
             <button className="bg-white text-blue-500 py-3 px-6 rounded-full font-semibold hover:bg-blue-100">
               Login
             </button>
+          </Link>
           </div>
         </div>
       </section>
