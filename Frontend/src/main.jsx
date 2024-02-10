@@ -17,16 +17,18 @@ import AdmineProfile from './Components/Admine/AdmineProfile.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
+    <>
     <Route path='/' element={<Layout />}>
       <Route path='' element={<Home />} />
       <Route path='login' element={<Login />} />
       <Route path='Ragistration' element={<SignUp />} />
       <Route path='profile' element={<Profile />} />
-      <Route path='admine' element={<Admine/>}/>
-      <Route path='admineJob' element={<AdmineJob/>}/>
-      <Route path='user' element={<User/>}/>
-      <Route path='admineProfile' element={<AdmineProfile/>}/>
     </Route>
+    <Route path='admine' element={<Admine/>}/>
+    <Route path='admineJob' element={<AdmineJob/>}/>
+    <Route path='user' element={<User/>}/>
+    <Route path='admineProfile' element={<AdmineProfile/>}/>
+    </>
   )
 )
 

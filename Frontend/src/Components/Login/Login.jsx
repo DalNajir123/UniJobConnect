@@ -25,7 +25,7 @@ const Login = () => {
       // Handle the authentication result
       if (response.data.success == true) {
         toast.success('Login Successful Welcome ');
-        navigate('/')
+        navigate('/admine')
         console.log(response.data.data.token);
         localStorage.setItem(response.data.data, response.data.data.token)
       } else {
