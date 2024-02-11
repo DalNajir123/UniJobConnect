@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import Logo from '../Logo/Logo';
 import axios from 'axios';
@@ -19,16 +18,22 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:8080/user/login', { email, password });
-      console.log(response);
-
 
       // Handle the authentication result
-      if (response.data.success == true) {
-        toast.success('Login Successful Welcome ');
-        navigate('/admine')
-        console.log(response.data.data.token);
-        localStorage.setItem(response.data.data, response.data.data.token)
-      } else {
+      if (response.data.success == true){
+          if (response.data.data.role == "candidate"){
+            toast.success('Login Successful Welcome ');
+            navigate('/')
+            console.log(response.data.data.token);
+            localStorage.setItem(response.data.data, response.data.data.token)
+          }else{
+            toast.success('Login Successful Welcome ');
+            navigate('/admine')
+            console.log(response.data.data.token);
+            localStorage.setItem(response.data.data, response.data.data.token)
+          }
+        }
+       else {
         toast.error(response.data.message);
       }
     } catch (error) {
