@@ -1,10 +1,16 @@
 import React from "react";
-import { Link, NavLink } from 'react-router-dom'
+import {NavLink, useNavigate } from 'react-router-dom'
+import {toast} from 'react-toastify'
 import { TbLogout } from "react-icons/tb";
-import { IoHome } from "react-icons/io5";
 
 
 export default function Navbar() {
+    const navigate = useNavigate();
+    const logout = () =>{
+        localStorage.removeItem('token')
+        toast.success('Logout Successfully')
+        navigate('/')
+    }
     return (
         <header className="shadow sticky z-50 top-0 ">
             <nav className="border-gray-900  lg:px-6 py-4 bg-fuchsia-500 text-white">
@@ -12,12 +18,9 @@ export default function Navbar() {
                     <h1 className="font-bold text-4xl font-serif italic hover:animate-bounce ">Admine Panel</h1>
                     {/* header button link */}
                     <div className="flex items-center lg:order-2">
-                        <Link
-                            to="logout"
-                            className="text-white hover:bg-gray-300 hover:text-purple-950 focus:ring-4 focus:ring-gray-300 font-bold rounded-lg text-lg px-4 lg:px-4 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                        >
-                           Logout
-                        </Link>
+                        <button onClick={logout} className="text-white hover:bg-gray-300 hover:text-purple-950 focus:ring-4 focus:ring-gray-300 font-bold rounded-lg text-lg px-4 lg:px-4 py-2 lg:py-2.5 mr-2 focus:outline-none">
+                            Logout
+                        </button>
                         <TbLogout className="text-4xl" />
                     </div>
                     {/* header link in ui */}

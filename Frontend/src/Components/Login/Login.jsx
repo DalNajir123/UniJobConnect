@@ -24,13 +24,13 @@ const Login = () => {
           if (response.data.data.role == "candidate"){
             toast.success('Login Successful Welcome ');
             navigate('/')
-            console.log(response.data.data.token);
-            localStorage.setItem(response.data.data, response.data.data.token)
+            const token = response.data.data.token
+            localStorage.setItem('token', token)
           }else{
             toast.success('Login Successful Welcome ');
             navigate('/admine')
-            console.log(response.data.data.token);
-            localStorage.setItem(response.data.data, response.data.data.token)
+            const token = response.data.data.token
+            localStorage.setItem('token', token)
           }
         }
        else {
