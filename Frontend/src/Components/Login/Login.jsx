@@ -19,13 +19,17 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:8080/user/login', { email, password });
 
+      console.log(response);
+
       // Handle the authentication result
       if (response.data.success == true){
           if (response.data.data.role == "candidate"){
-            toast.success('Login Successful Welcome ');
+            const name = response.data.data.firstName
+            toast.success(`Login Successful Welcome ${name}`);
             navigate('/')
             const token = response.data.data.token
             localStorage.setItem('token', token)
+            localStorage.setItem('name',name)
           }else{
             toast.success('Login Successful Welcome ');
             navigate('/admine')
