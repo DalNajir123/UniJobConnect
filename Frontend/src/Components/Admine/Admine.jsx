@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Getjob from "./getJob";
+import Getjob from "./Getjob";
 
 function Admine() {
   const [darkmode, setDarkmode] = useState(false)

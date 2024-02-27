@@ -17,7 +17,7 @@ function Jobcard() {
   );
 
   return (
-    <section className="py-16 bg-purple-300">
+    <section className="py-16 bg-purple-200">
       <div className="container mx-auto">
         <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
           Explore Exciting Opportunities to Shape Your Career
@@ -43,13 +43,13 @@ function Jobcard() {
           {filteredData.map((job, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-md shadow-md transition transform hover:scale-105"
+              className="bg-white p-6 rounded-md shadow-md shadow-slate-600 hover:bg-purple-300 transition transform hover:scale-105"
             >
-              <h3 className="text-xl text-blue-600 font-semibold mb-4">
+              <h3 className="text-xl text-black font-semibold mb-4">
                 {job.title}
               </h3>
               <p className="text-gray-700 mb-6">{job.description}</p>
-              <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+              <button className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300">
                 Apply Now
               </button>
             </div>

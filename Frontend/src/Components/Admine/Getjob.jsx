@@ -1,47 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Getjob() {
-    const [data,setData] = useState([]);
-    useEffect(()=>{
-        axios.get("http://localhost:8080/job/get")
-        .then(res => setData(res.data.data))
-        // .then(res => console.log(res.data.data))
-        .catch(err => console.log(err));
-    },[])
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/job/get")
+      .then(res => setData(res.data.data))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <>
-      <div className='container'>
+      <div className='container mx-auto'>
         <div className='mt-3'>
-            <h3>Your Posted Job</h3>
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Location</th>
-                        <th>Requirements</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        data.map((jobs,index)=>{
-                            return <tr key={index}>
-                                <td>{jobs.id}</td>
-                                <td>{jobs.title}</td>
-                                <td>{jobs.description}</td>
-                                <td>{jobs.location}</td>
-                                <td>{jobs.requirements}</td>
-                            </tr>
-                        })
-                    }
-                </tbody>
+          <h3 className='text-2xl font-semibold mb-2'>Your Posted Job</h3>
+          <div className='overflow-x-auto'>
+            <table className='min-w-full table-auto border border-collapse hover:shadow-md transition duration-300'>
+              <thead>
+                <tr className='bg-gray-100'>
+                  <th className='p-2 border'>Id</th>
+                  <th className='p-2 border'>Title</th>
+                  <th className='p-2 border'>Description</th>
+                  <th className='p-2 border'>Location</th>
+                  <th className='p-2 border'>Requirements</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((jobs, index) => (
+                  <tr key={index} className='transition duration-300 hover:bg-gray-200'>
+                    <td className='p-2 border'>{jobs.id}</td>
+                    <td className='p-2 border'>{jobs.title}</td>
+                    <td className='p-2 border'>{jobs.description}</td>
+                    <td className='p-2 border'>{jobs.location}</td>
+                    <td className='p-2 border'>{jobs.requirements}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
+          </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Getjob
+export default Getjob;
