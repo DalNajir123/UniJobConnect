@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Getjob() {
+function Getjob(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
     axios.get("http://localhost:8080/job/get")
       .then(res => setData(res.data.data))
       .catch(err => console.log(err));
-  }, []);
+  };
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:8080/job/delete/${id}`)
+      .then(() => {
+        fetchData();
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <>
@@ -24,16 +36,20 @@ function Getjob() {
                   <th className='p-2 border'>Description</th>
                   <th className='p-2 border'>Location</th>
                   <th className='p-2 border'>Requirements</th>
+                  <th className='p-2 border'>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {data.map((jobs, index) => (
+                {data.map((job, index) => (
                   <tr key={index} className='transition duration-300 hover:bg-gray-200'>
-                    <td className='p-2 border'>{jobs.id}</td>
-                    <td className='p-2 border'>{jobs.title}</td>
-                    <td className='p-2 border'>{jobs.description}</td>
-                    <td className='p-2 border'>{jobs.location}</td>
-                    <td className='p-2 border'>{jobs.requirements}</td>
+                    <td className='p-2 border'>{job.id}</td>
+                    <td className='p-2 border'>{job.title}</td>
+                    <td className='p-2 border'>{job.description}</td>
+                    <td className='p-2 border'>{job.location}</td>
+                    <td className='p-2 border'>{job.requirements}</td>
+                    <td className='p-2 border'>
+                      <button onClick={() => handleDelete(job.id)}>Delete</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
