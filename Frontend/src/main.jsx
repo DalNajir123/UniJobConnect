@@ -14,6 +14,7 @@ import Admine from './Components/Admine/Admine.jsx';
 import AdmineJob from './Components/Admine/AdmineJob.jsx';
 import User from './Components/Admine/User.jsx';
 import AdmineProfile from './Components/Admine/AdmineProfile.jsx';
+import Jobs from './Components/Job/Jobs.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path='login' element={<Login />} />
       <Route path='Ragistration' element={<SignUp />} />
       <Route path='profile' element={<Profile />} />
+      <Route path='Jobs' element={<Jobs />} />
     </Route>
     <Route path='admine' element={<Admine/>}/>
     <Route path='admineJob' element={<AdmineJob/>}/>
