@@ -34,7 +34,7 @@ function Jobcard() {
           <input
             type="text"
             placeholder="Search for a job..."
-            className="px-4 py-2 text-black border border-gray-300 rounded-md w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 focus:outline-none focus:ring focus:border-blue-300"
+            className="px-4 py-2 text-black border border-purple-400 rounded-md w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 focus:outline-none focus:ring focus:border-purple-700"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
@@ -43,7 +43,7 @@ function Jobcard() {
           {filteredData.map((job, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-md shadow-md shadow-slate-600 hover:bg-purple-300 transition transform hover:scale-105"
+              className="bg-white p-6 rounded-lg shadow-lg shadow-slate-600 hover:bg-purple-300 transition transform hover:scale-110"
             >
               <h3 className="text-xl text-black font-semibold mb-4">
                 {job.title}

@@ -43,8 +43,8 @@ function AdmineJob() {
   return (
     <>
       <Navbar />
-      <div className="flex justify-center items-center h-screen bg-fuchsia-200">
-        <div className="max-w-md w-full relative space-y-8 p-8 bg-fuchsia-400  rounded-md">
+      <div className="flex justify-center items-center h-screen bg-sky-100">
+        <div className="max-w-md w-full relative space-y-8 p-8 bg-sky-400  rounded-md">
           <form
             className=" mt-5 space-y-6 rounded shadow-md w-96"
             onSubmit={createJob}
@@ -103,7 +103,7 @@ function AdmineJob() {
 
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-fuchsia-600 hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900"
+              className="group relative w-full flex justify-center py-2 px-4 border-2 border-white text-lg font-bold rounded-md text-white bg-sky-600 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900"
             >
               Create Job
             </button>
