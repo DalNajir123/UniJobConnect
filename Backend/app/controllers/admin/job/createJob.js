@@ -14,6 +14,9 @@ const createJob = async (req, res) => {
       locationType,
     } = req.body;
 
+    // Assuming you have access to the authenticated user's ID in req.user
+    const createdBy = req.user.id;
+
     const job = await Job.create({
       title,
       description,
@@ -24,6 +27,7 @@ const createJob = async (req, res) => {
       country,
       jobType,
       locationType,
+      createdBy, // Include createdBy field
     });
 
     return res.status(201).json({

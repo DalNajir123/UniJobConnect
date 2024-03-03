@@ -7,9 +7,11 @@ const {
 const verifyJwtToken = require("../middlewares/authMiddleware");
 const bodyErrorSender = require("../middlewares/bodyErrorSender");
 const { createUser, userLogin } = require("../controllers/user/auth");
+const getUserData = require("../controllers/user/auth/getUserData");
 
 router.post("/sign-up", userSignUpValidation, bodyErrorSender, createUser);
 router.post("/login", userLoginValidation, bodyErrorSender, userLogin);
+router.get("/self-data", verifyJwtToken, getUserData);
 
 router.get("/test-jwt", verifyJwtToken, (req, res) => {
   return res.status(200).send({

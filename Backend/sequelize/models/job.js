@@ -42,6 +42,14 @@ const Job = sequelize.define("Job", {
     type: DataTypes.ENUM("onSite", "remote", "hybrid"),
     allowNull: true,
   },
+  createdBy: {
+    type: DataTypes.NUMBER,
+    allowNull: true,
+  },
+  updatedBy: {
+    type: DataTypes.NUMBER,
+    allowNull: true,
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,

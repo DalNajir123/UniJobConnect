@@ -35,6 +35,9 @@ const updateJobById = async (req, res) => {
     job.jobType = jobType || job.jobType;
     job.locationType = locationType || job.locationType;
 
+    // Set the updatedBy field
+    job.updatedBy = req.user.id;
+
     // Save the changes to the database
     await job.save();
 
