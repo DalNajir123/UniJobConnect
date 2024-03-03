@@ -14,6 +14,10 @@ const Job = sequelize.define("Job", {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  companyName: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   address: {
     type: DataTypes.STRING,
     allowNull: true,
