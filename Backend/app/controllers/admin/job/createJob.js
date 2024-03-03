@@ -1,28 +1,41 @@
 const Job = require("../../../../sequelize/models/job");
 
-const createJob = (req, res) => {
+const createJob = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const {
+      title,
+      description,
+      requirements,
+      address,
+      city,
+      state,
+      country,
+      jobType,
+      locationType,
+    } = req.body;
 
-    Job.create({ title, description })
-      .then((data) => {
-        return res.status(200).json({
-          success: true,
-          message: "Job created successfully",
-          data,
-        });
-      })
-      .catch((error) => {
-        return res.status(500).json({
-          success: false,
-          message: "Job not created",
-          error,
-        });
-      });
+    const job = await Job.create({
+      title,
+      description,
+      requirements,
+      address,
+      city,
+      state,
+      country,
+      jobType,
+      locationType,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Job created successfully",
+      data: job,
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
       message: "Internal server error while creating a job",
+      error,
     });
   }
 };

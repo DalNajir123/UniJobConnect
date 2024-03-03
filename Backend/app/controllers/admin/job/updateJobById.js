@@ -3,7 +3,17 @@ const Job = require("../../../../sequelize/models/job");
 const updateJobById = async (req, res) => {
   try {
     const jobId = req.params.id;
-    const { title, description } = req.body;
+    const {
+      title,
+      description,
+      requirements,
+      address,
+      city,
+      state,
+      country,
+      jobType,
+      locationType,
+    } = req.body;
 
     const job = await Job.findByPk(jobId);
 
@@ -17,6 +27,13 @@ const updateJobById = async (req, res) => {
     // Update job attributes
     job.title = title || job.title;
     job.description = description || job.description;
+    job.requirements = requirements || job.requirements;
+    job.address = address || job.address;
+    job.city = city || job.city;
+    job.state = state || job.state;
+    job.country = country || job.country;
+    job.jobType = jobType || job.jobType;
+    job.locationType = locationType || job.locationType;
 
     // Save the changes to the database
     await job.save();

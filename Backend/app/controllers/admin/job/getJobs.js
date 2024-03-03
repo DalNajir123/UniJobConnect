@@ -7,6 +7,20 @@ const getJobs = async (req, res) => {
     const offset = (page - 1) * pageSize;
 
     const jobs = await Job.findAll({
+      attributes: [
+        "id",
+        "title",
+        "description",
+        "requirements",
+        "address",
+        "city",
+        "state",
+        "country",
+        "jobType",
+        "locationType",
+        "createdAt",
+        "updatedAt",
+      ],
       limit: parseInt(pageSize),
       offset: offset,
       order: [["createdAt", "DESC"]], // Order by createdAt in descending order
