@@ -7,8 +7,14 @@ function Getjob(props) {
     id: "",
     title: "",
     description: "",
-    location: "",
+    companyName: "",
     requirements: "",
+    jobType: "",
+    locationType: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
   });
 
   useEffect(() => {
@@ -23,10 +29,10 @@ function Getjob(props) {
   };
 
   const handleDelete = (id) => {
-    // const token = localStorage.getItem("token");
-    // const headers = { Authorization: token };
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: token };
     axios
-      .delete(`http://localhost:8080/job/delete/${id}`,{ headers })
+      .delete(`http://localhost:8080/job/delete/${id}`, { headers })
       .then(() => {
         fetchData();
       })
@@ -38,26 +44,49 @@ function Getjob(props) {
       id: job.id,
       title: job.title,
       description: job.description,
-      location: job.location,
+      companyName: job.companyName,
       requirements: job.requirements,
+      jobType: job.jobType,
+      locationType: job.locationType,
+      address: job.address,
+      city: job.city,
+      state: job.state,
+      country: job.country,
     });
   };
 
   const handleUpdateSubmit = () => {
-    // const token = localStorage.getItem("token");
-    // const headers = { Authorization: token };
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: token };
+    const updatedData = {
+      id: updateFormData.id,
+      title: updateFormData.title,
+      description: updateFormData.description,
+      companyName: updateFormData.companyName,
+      requirements: updateFormData.requirements,
+      jobType: updateFormData.jobType,
+      locationType: updateFormData.locationType,
+      address: updateFormData.address,
+      city: updateFormData.city,
+      state: updateFormData.state,
+      country: updateFormData.country,
+    };
+
     axios
-      .put(
-        `http://localhost:8080/job/update/${updateFormData.id}`,
-        updateFormData,{ headers }
-      )
+      .put(`http://localhost:8080/job/update/${updateFormData.id}`, updatedData,{headers})
       .then(() => {
         setUpdateFormData({
           id: "",
           title: "",
           description: "",
-          location: "",
+          companyName: "",
           requirements: "",
+          jobType: "",
+          locationType: "",
+          address: "",
+          city: "",
+          state: "",
+          country: "",
         });
         fetchData();
       })
@@ -128,7 +157,7 @@ function Getjob(props) {
       {updateFormData.id && (
         <div className="mt-3">
           <h3 className="text-2xl font-semibold mb-2">Update Job</h3>
-          <form className="max-w-md mx-auto">
+          <form className="max-w-md mx-auto border-4 border-sky-200 rounded-lg mb-5">
             <label>Title:</label>
             <input
               type="text"
@@ -152,15 +181,15 @@ function Getjob(props) {
               }
               className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             />
-            <label>Location:</label>
+            <label>CompanyName:</label>
             <input
               type="text"
-              name="location"
-              value={updateFormData.location}
+              name="companyName"
+              value={updateFormData.companyName}
               onChange={(e) =>
                 setUpdateFormData({
                   ...updateFormData,
-                  location: e.target.value,
+                  companyName: e.target.value,
                 })
               }
               className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -174,6 +203,84 @@ function Getjob(props) {
                 setUpdateFormData({
                   ...updateFormData,
                   requirements: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            />
+            <label>JobType:</label>
+            <input
+              type="text"
+              name="jobType"
+              value={updateFormData.jobType}
+              onChange={(e) =>
+                setUpdateFormData({
+                  ...updateFormData,
+                  jobType: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            />
+            <label>LocationType:</label>
+            <input
+              type="text"
+              name="locationType"
+              value={updateFormData.locationType}
+              onChange={(e) =>
+                setUpdateFormData({
+                  ...updateFormData,
+                  locationType: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            />
+            <label>Address:</label>
+            <input
+              type="text"
+              name="address"
+              value={updateFormData.address}
+              onChange={(e) =>
+                setUpdateFormData({
+                  ...updateFormData,
+                  address: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            />
+            <label>City:</label>
+            <input
+              type="text"
+              name="city"
+              value={updateFormData.city}
+              onChange={(e) =>
+                setUpdateFormData({
+                  ...updateFormData,
+                  city: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            />
+            <label>State:</label>
+            <input
+              type="text"
+              name="state"
+              value={updateFormData.state}
+              onChange={(e) =>
+                setUpdateFormData({
+                  ...updateFormData,
+                  state: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            />
+            <label>Country:</label>
+            <input
+              type="text"
+              name="country"
+              value={updateFormData.country}
+              onChange={(e) =>
+                setUpdateFormData({
+                  ...updateFormData,
+                  country: e.target.value,
                 })
               }
               className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"

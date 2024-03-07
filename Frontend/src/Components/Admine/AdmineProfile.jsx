@@ -54,7 +54,7 @@ function AdminProfile() {
         </div>
         </>
       ) : (
-        <Login />
+        <h1>Please Login</h1>
       )}
       <Footer />
     </>
