@@ -16,7 +16,6 @@ function JobCard() {
   const filteredData = data.filter((job) => {
     const titleMatch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
     const jobTypeMatch = selectedJobType === "all" || job.jobType === selectedJobType;
-
     return titleMatch && jobTypeMatch;
   });
 
@@ -59,7 +58,7 @@ function JobCard() {
           {filteredData.map((job, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-lg shadow-slate-600 hover:bg-purple-300 transition transform hover:scale-110"
+              className="bg-white p-6 rounded-lg shadow-lg shadow-slate-600 hover:bg-purple-300 transition transform hover:scale-105"
             >
               <h3 className="text-xl text-black font-semibold mb-4">
                 {job.title}

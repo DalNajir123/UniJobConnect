@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "../../Slider";
 import "./Home.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const slide = ["./1.webp", "./2.webp"];
 
@@ -17,8 +17,8 @@ const HomePage = () => {
           </h1>
         </div>
 
-        <div className='flex justify-center items-center  '>
-          <div className='w-[60%] '>
+        <div className="flex justify-center items-center  ">
+          <div className="w-[60%] ">
             <Slider autoSlide={true}>
               {slide.map((s, i) => (
                 <img key={i} src={s} />
@@ -70,27 +70,33 @@ const HomePage = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className="bg-purple-400 text-white py-16">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg mb-8">
-            Create an account or login to explore more job opportunities.
-          </p>
-          <div>
-          <Link to="/Ragistration">
-            <button className="bg-white text-blue-500 py-3 px-6 rounded-full font-semibold hover:bg-blue-100">
-                Create Account 
-            </button>
-          </Link>
-            <span className="mx-4">or</span>
-          <Link to="/login">
-            <button className="bg-white text-blue-500 py-3 px-6 rounded-full font-semibold hover:bg-blue-100">
-              Login
-            </button>
-          </Link>
-          </div>
-        </div>
-      </section>
+      {localStorage.getItem("token") ? (
+        ""
+      ) : (
+        <>
+          <section className="bg-purple-400 text-white py-16">
+            <div className="container mx-auto text-center">
+              <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
+              <p className="text-lg mb-8">
+                Create an account or login to explore more job opportunities.
+              </p>
+              <div>
+                <Link to="/Ragistration">
+                  <button className="bg-white text-blue-500 py-3 px-6 rounded-full font-semibold hover:bg-blue-100">
+                    Create Account
+                  </button>
+                </Link>
+                <span className="mx-4">or</span>
+                <Link to="/login">
+                  <button className="bg-white text-blue-500 py-3 px-6 rounded-full font-semibold hover:bg-blue-100">
+                    Login
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </div>
   );
 };

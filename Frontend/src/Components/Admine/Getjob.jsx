@@ -23,8 +23,10 @@ function Getjob(props) {
   };
 
   const handleDelete = (id) => {
+    // const token = localStorage.getItem("token");
+    // const headers = { Authorization: token };
     axios
-      .delete(`http://localhost:8080/job/delete/${id}`)
+      .delete(`http://localhost:8080/job/delete/${id}`,{ headers })
       .then(() => {
         fetchData();
       })
@@ -42,10 +44,12 @@ function Getjob(props) {
   };
 
   const handleUpdateSubmit = () => {
+    // const token = localStorage.getItem("token");
+    // const headers = { Authorization: token };
     axios
       .put(
         `http://localhost:8080/job/update/${updateFormData.id}`,
-        updateFormData
+        updateFormData,{ headers }
       )
       .then(() => {
         setUpdateFormData({
