@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import axios from 'axios';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
-function AdmineProfile() {
-  const [data,setData] = useState([])
-  const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("token");
+function AdminProfile() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const headers = { Authorization: token };
     axios
-      .get("http://localhost:8080/user/self-data",{ headers })
+      .get('http://localhost:8080/user/self-data', { headers })
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(setData);
+
   return (
     <>
-      <Navbar/>
+      <Navbar />
       {token ? (
+        <>
+        {loading && (
+          <div className="animate-pulse bg-gray-200 p-4 rounded-lg text-center">
+            Loading profile data...
+          </div>
+        )}
         <div className={`profile-container ${loading ? 'pulse' : 'fadeIn'}`}>
           <div className="profile-card">
-            <h2 className="profile-title">Admin Profile</h2>
+            <h2 className="profile-title">User Profile</h2>
             <div className="profile-info">
               <strong>ID:</strong> {data.id}
             </div>
@@ -45,12 +52,13 @@ function AdmineProfile() {
             </div>
           </div>
         </div>
+        </>
       ) : (
         <Login />
       )}
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default AdmineProfile
+export default AdminProfile;

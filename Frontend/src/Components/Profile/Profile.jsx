@@ -1,4 +1,3 @@
-// Profile.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Login from "../Login/Login";
@@ -23,6 +22,7 @@ function Profile() {
   return (
     <>
       {token ? (
+        <>
         <div className={`profile-container ${loading ? 'pulse' : 'fadeIn'}`}>
           <div className="profile-card">
             <h2 className="profile-title">User Profile</h2>
@@ -49,6 +49,7 @@ function Profile() {
             </div>
           </div>
         </div>
+        </>
       ) : (
         <Login />
       )}
