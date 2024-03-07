@@ -28,7 +28,7 @@ function AdminProfile() {
         )}
         <div className={`profile-container ${loading ? 'pulse' : 'fadeIn'}`}>
           <div className="profile-card">
-            <h2 className="profile-title">User Profile</h2>
+            <h2 className="profile-title">Admin Profile</h2>
             <div className="profile-info">
               <strong>ID:</strong> {data.id}
             </div>
