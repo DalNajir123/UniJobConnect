@@ -30,7 +30,7 @@ const createJob = async (req, res) => {
       createdBy, // Include createdBy field
     });
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
       message: "Job created successfully",
       data: job,

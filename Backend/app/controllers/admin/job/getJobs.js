@@ -13,6 +13,7 @@ const getJobs = async (req, res) => {
         "description",
         "requirements",
         "address",
+        "companyName",
         "city",
         "state",
         "country",

@@ -13,6 +13,7 @@ require("./sequelize/models/associations");
 const indexRouter = require("./app/routes/index");
 const usersRouter = require("./app/routes/users");
 const jobsRouter = require("./app/routes/jobs");
+const applicationsRouter = require("./app/routes/applications");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/user", usersRouter);
 app.use("/job", jobsRouter);
+app.use("/application", applicationsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
