@@ -7,6 +7,7 @@ const updateJobById = async (req, res) => {
       title,
       description,
       requirements,
+      companyName,
       address,
       city,
       state,
@@ -34,6 +35,7 @@ const updateJobById = async (req, res) => {
     job.country = country || job.country;
     job.jobType = jobType || job.jobType;
     job.locationType = locationType || job.locationType;
+    job.companyName = companyName || job.companyName;
 
     // Set the updatedBy field
     job.updatedBy = req.user.id;

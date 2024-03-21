@@ -24,7 +24,7 @@ const getApplications = async (req, res) => {
     }
 
     // Find all applications associated with the candidate's userId
-    const applications = await Application.findAll({
+    const { count, rows: applications } = await Application.findAndCountAll({
       where: whereClause,
       include: [{ model: Job, where: {}, required: true }], // Include the associated Job data with filtering
       limit: parseInt(pageSize),
@@ -36,6 +36,8 @@ const getApplications = async (req, res) => {
       success: true,
       message: "Candidate's job applications fetched successfully",
       data: applications,
+      total: count,
+      totalPages: Math.ceil(count / pageSize),
     });
   } catch (error) {
     console.error("Error fetching candidate's applications:", error);
