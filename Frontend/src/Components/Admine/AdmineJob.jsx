@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Logo from "../Logo/Logo";
 
 function AdmineJob() {
   const [formData, setFormData] = useState({

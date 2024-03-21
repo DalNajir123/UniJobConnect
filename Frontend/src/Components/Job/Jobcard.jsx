@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import {toast} from "react-toastify";
+import { useNavigate } from "react-router-dom";
+ 
 function JobCard() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJobType, setSelectedJobType] = useState("all");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -12,6 +15,21 @@ function JobCard() {
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   }, []);
+
+  const applyJob = async (jobId) => {
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: token };
+    try {
+      const response = await axios.post(`http://localhost:8080/application/create/${jobId}`, {}, { headers });
+      console.log(response);
+      navigate('/application')
+      toast.success(response.data.message);
+
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
+  };
+  
 
   const filteredData = data.filter((job) => {
     const titleMatch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -72,7 +90,7 @@ function JobCard() {
               <p className="text-gray-700 mb-2">City: {job.city}</p>
               <p className="text-gray-700 mb-2">State: {job.state}</p>
               <p className="text-gray-700 mb-2">Country: {job.country}</p>
-              <button className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300">
+              <button onClick={() => applyJob(job.id)} className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300">
                 Apply Now
               </button>
             </div>
