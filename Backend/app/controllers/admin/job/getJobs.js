@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const Job = require("../../../../sequelize/models/job");
+const Application = require("../../../../sequelize/models/application");
 
 const getJobs = async (req, res) => {
   try {
@@ -42,10 +43,24 @@ const getJobs = async (req, res) => {
       order: [["createdAt", "DESC"]], // Order by createdAt in descending order
     });
 
+    // Fetch total application count for each job
+    const jobsWithApplicationCount = await Promise.all(
+      jobs.map(async (job) => {
+        const applicationCount = await Application.count({
+          where: { jobId: job.id },
+        });
+
+        return {
+          ...job.toJSON(),
+          applicationCount,
+        };
+      })
+    );
+
     return res.status(200).json({
       success: true,
       message: "Jobs fetched successfully",
-      data: jobs,
+      data: jobsWithApplicationCount,
       pagination: {
         currentPage: parseInt(page),
         pageSize: parseInt(pageSize),
