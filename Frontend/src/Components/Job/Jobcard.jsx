@@ -8,6 +8,7 @@ function JobCard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJobType, setSelectedJobType] = useState("all");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
@@ -16,20 +17,18 @@ function JobCard() {
       .catch((err) => console.log(err));
   }, []);
 
-  const applyJob = async (jobId) => {
-    const token = localStorage.getItem("token");
-    const headers = { Authorization: token };
-    try {
-      const response = await axios.post(`http://localhost:8080/application/create/${jobId}`, {}, { headers });
-      console.log(response);
-      navigate('/application')
-      toast.success(response.data.message);
-
-    } catch (error) {
-      toast.error(error.response.data.message)
-    }
-  };
+    const applyJob = async (jobId) => {
+      const headers = { Authorization: token };
+      try {
+        const response = await axios.post(`http://localhost:8080/application/create/${jobId}`, {}, { headers });
+        console.log(response);
+        navigate('/application')
+        toast.success(response.data.message);
   
+      } catch (error) {
+        toast.error(error.response.data.message)
+      }
+    };
 
   const filteredData = data.filter((job) => {
     const titleMatch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -76,9 +75,9 @@ function JobCard() {
           {filteredData.map((job, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-lg shadow-slate-600 hover:bg-purple-300 transition transform hover:scale-105"
+              className="bg-white p-6 rounded-lg shadow-lg shadow-slate-600 hover:bg-purple-300 hover:text-white transition transform hover:scale-105"
             >
-              <h3 className="text-xl text-black font-semibold mb-4">
+              <h3 className="text-2xl  font-semibold mb-4">
                 {job.title}
               </h3>
               <p className="text-gray-700 mb-6">{job.description}</p>
@@ -90,7 +89,7 @@ function JobCard() {
               <p className="text-gray-700 mb-2">City: {job.city}</p>
               <p className="text-gray-700 mb-2">State: {job.state}</p>
               <p className="text-gray-700 mb-2">Country: {job.country}</p>
-              <button onClick={() => applyJob(job.id)} className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300">
+              <button onClick={token ? () => applyJob(job.id) : () => navigate('/login')} className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300">
                 Apply Now
               </button>
             </div>

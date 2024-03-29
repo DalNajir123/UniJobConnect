@@ -22,7 +22,6 @@ function Admine() {
         }
       >
         <div className="container mx-auto">
-          <h1 className="text-4xl font-bold mb-6">NAJIR</h1>
           <Getjob />
         </div>
       </div>
