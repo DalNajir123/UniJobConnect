@@ -39,7 +39,7 @@ function User() {
           {applications.map((application) => (
             <div
               key={application.id}
-              className="bg-sky-200 rounded-lg shadow-md shadow-zinc-800 mb-4 p-4 transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="bg-sky-200 rounded-lg border-2 border-zinc-900 shadow-md shadow-zinc-800 mb-4 p-4 transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <h3 className="text-2xl border-2 border-black text-sky-500 text-center font-bold mb-2 bg-white rounded-md p-1">
                 Job Details

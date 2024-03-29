@@ -3,6 +3,7 @@ import Slider from "../../Slider";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import JobForHome from "./JobForHome";
+import Scroll from "../../Scroll";
 
 const slide = ["./1.webp", "./2.webp"];
 
@@ -56,15 +57,6 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-center mb-8">
             Featured Jobs
           </h2>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded shadow">
-              <h3 className="text-xl font-semibold mb-2">Frontend Developer</h3>
-              <p className="text-gray-700 mb-4">Company ABC</p>
-              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                Apply Now
-              </button>
-            </div>
-          </div> */}
           <JobForHome />
         </div>
       </section>
@@ -97,6 +89,7 @@ const HomePage = () => {
           </section>
         </>
       )}
+      <Scroll />
     </div>
   );
 };

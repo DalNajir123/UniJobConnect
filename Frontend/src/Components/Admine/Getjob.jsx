@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { MdDeleteForever } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import {toast} from 'react-toastify'
+import Scroll from '../../Scroll'
+
 
 function Getjob(props) {
   const [data, setData] = useState([]);
@@ -35,6 +40,7 @@ function Getjob(props) {
       .delete(`http://localhost:8080/job/delete/${id}`, { headers })
       .then(() => {
         fetchData();
+        toast.success('Job Deleted Successfully')
       })
       .catch((err) => console.log(err));
   };
@@ -89,6 +95,7 @@ function Getjob(props) {
           country: "",
         });
         fetchData();
+        toast.success('Job Updated Successfuly');
       })
       .catch((err) => console.log(err));
   };
@@ -96,11 +103,13 @@ function Getjob(props) {
   return (
     <div className="container mx-auto">
       <div className="mt-3">
-        <h3 className="text-2xl font-semibold mb-2">Your Posted Job</h3>
+      <h2 className="sticky top-20 z-50  my-10 p-3 text-3xl text-center font-bold text-sky-400 border-2 border-sky-400 bg-neutral-100 shadow-md shadow-sky-500 rounded-lg transition-transform duration-1000 ease-in-out">
+     ---------- Your Posted Job ----------
+      </h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full table-auto border border-collapse hover:shadow-md transition duration-300">
+          <table className="min-w-full table-auto border-4 border-black  border-collapse hover:shadow-md transition duration-300 mb-7">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-sky-100 ">
                 <th className="p-2 border">Id</th>
                 <th className="p-2 border">Title</th>
                 <th className="p-2 border">Description</th>
@@ -119,31 +128,31 @@ function Getjob(props) {
               {data.map((job, index) => (
                 <tr
                   key={index}
-                  className="transition duration-300 hover:bg-gray-200"
+                  className="transition border-2 border-black duration-300 hover:bg-sky-200"
                 >
-                  <td className="p-2 border">{job.id}</td>
-                  <td className="p-2 border">{job.title}</td>
-                  <td className="p-2 border">{job.description}</td>
-                  <td className="p-2 border">{job.companyName}</td>
-                  <td className="p-2 border">{job.requirements}</td>
-                  <td className="p-2 border">{job.jobType}</td>
-                  <td className="p-2 border">{job.locationType}</td>
-                  <td className="p-2 border">{job.address}</td>
-                  <td className="p-2 border">{job.city}</td>
-                  <td className="p-2 border">{job.state}</td>
-                  <td className="p-2 border">{job.country}</td>
-                  <td className="p-2 border flex justify-between">
+                  <td className="p-2 border-2 border-black">{job.id}</td>
+                  <td className="p-2 border-2 border-black">{job.title}</td>
+                  <td className="p-2 border-2 border-black">{job.description}</td>
+                  <td className="p-2 border-2 border-black">{job.companyName}</td>
+                  <td className="p-2 border-2 border-black">{job.requirements}</td>
+                  <td className="p-2 border-2 border-black">{job.jobType}</td>
+                  <td className="p-2 border-2 border-black">{job.locationType}</td>
+                  <td className="p-2 border-2 border-black">{job.address}</td>
+                  <td className="p-2 border-2 border-black">{job.city}</td>
+                  <td className="p-2 border-2 border-black">{job.state}</td>
+                  <td className="p-2 border-2 border-black">{job.country}</td>
+                  <td className="p-2  flex justify-between">
                     <button
-                      className="p-1 rounded-xl border-2 mr-2 border-black"
+                      className="p-1 rounded-xl mr-2 "
                       onClick={() => handleDelete(job.id)}
                     >
-                      Delete
+                      <MdDeleteForever className="text-5xl text-red-700 transition duration-700 hover:scale-125" />
                     </button>
                     <button
-                      className="p-1 rounded-xl border-2 border-black"
+                      className="p-1 rounded-xl "
                       onClick={() => handleUpdate(job)}
                     >
-                      Update
+                      <FaEdit className="text-5xl text-green-700 transition duration-700 hover:scale-125"/>
                     </button>
                   </td>
                 </tr>
@@ -155,10 +164,12 @@ function Getjob(props) {
 
       {/* Update Form */}
       {updateFormData.id && (
-        <div className="mt-3">
-          <h3 className="text-2xl font-semibold mb-2">Update Job</h3>
-          <form className="max-w-md mx-auto border-4 border-sky-200 rounded-lg mb-5">
-            <label>Title:</label>
+        <div className="mt-3 mb-5 bg-neutral-100">
+          <h2 className="sticky top-20 z-50  my-10 p-3 text-3xl text-center font-bold text-sky-400 border-2 border-sky-400 bg-neutral-100 shadow-md shadow-sky-500 rounded-lg transition-transform duration-1000 ease-in-out">
+     ---------- Update Job ----------
+      </h2>
+          <form className="max-w-md mx-auto bg-sky-200 border-4 border-black p-8 rounded-lg ">
+            <label className="text-lg italic font-bold">Title</label>
             <input
               type="text"
               name="title"
@@ -166,9 +177,9 @@ function Getjob(props) {
               onChange={(e) =>
                 setUpdateFormData({ ...updateFormData, title: e.target.value })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>Description:</label>
+            <label className="text-lg italic font-bold">Description</label>
             <input
               type="text"
               name="description"
@@ -179,9 +190,9 @@ function Getjob(props) {
                   description: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>CompanyName:</label>
+            <label className="text-lg italic font-bold">CompanyName</label>
             <input
               type="text"
               name="companyName"
@@ -192,9 +203,9 @@ function Getjob(props) {
                   companyName: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>Requirements:</label>
+            <label className="text-lg italic font-bold">Requirements</label>
             <input
               type="text"
               name="requirements"
@@ -205,9 +216,9 @@ function Getjob(props) {
                   requirements: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>JobType:</label>
+            <label className="text-lg italic font-bold">JobType</label>
             <input
               type="text"
               name="jobType"
@@ -218,9 +229,9 @@ function Getjob(props) {
                   jobType: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>LocationType:</label>
+            <label className="text-lg italic font-bold">LocationType</label>
             <input
               type="text"
               name="locationType"
@@ -231,9 +242,9 @@ function Getjob(props) {
                   locationType: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>Address:</label>
+            <label className="text-lg italic font-bold">Address</label>
             <input
               type="text"
               name="address"
@@ -244,9 +255,9 @@ function Getjob(props) {
                   address: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>City:</label>
+            <label className="text-lg italic font-bold">City</label>
             <input
               type="text"
               name="city"
@@ -257,9 +268,9 @@ function Getjob(props) {
                   city: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>State:</label>
+            <label className="text-lg italic font-bold">State</label>
             <input
               type="text"
               name="state"
@@ -270,9 +281,9 @@ function Getjob(props) {
                   state: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
-            <label>Country:</label>
+            <label className="text-lg italic font-bold">Country</label>
             <input
               type="text"
               name="country"
@@ -283,18 +294,21 @@ function Getjob(props) {
                   country: e.target.value,
                 })
               }
-              className="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="w-full px-3 py-2 border-2 border-black placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-sky-600 focus:z-10 sm:text-sm"
             />
+
             <button
               type="button"
               onClick={handleUpdateSubmit}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
+              className="w-full mt-5 py-2 px-4 border-2 border-white text-2xl font-bold rounded-md text-white bg-gradient-to-r from-zinc-500 to-sky-500 hover:from-sky-500 hover:to-zinc-600 hover:scale-110
+             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-900 transition-transform duration-700 ease-in-out transform"
             >
               Update Job
             </button>
           </form>
         </div>
       )}
+      <Scroll/>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Scroll from '../../Scroll'
  
 function JobCard() {
   const [data, setData] = useState([]);
@@ -96,6 +97,7 @@ function JobCard() {
           ))}
         </div>
       </div>
+      <Scroll/>
     </section>
   );
 }
