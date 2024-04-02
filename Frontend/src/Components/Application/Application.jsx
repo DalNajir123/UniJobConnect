@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
+import { MdCancel } from "react-icons/md";
+
+
 
 function Application() {
   const [applications, setApplications] = useState([]);
@@ -12,6 +16,7 @@ function Application() {
       try {
         const response = await axios.get('http://localhost:8080/application/get?page=1&pageSize=10&title=&description=', { headers });
         setApplications(response.data.data);
+        console.log(response.data.data);
       } catch (error) {
         console.error('Error fetching applications:', error);
       }
@@ -43,15 +48,30 @@ function Application() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {applications.map(application => (
               <div key={application.id} className="bg-white shadow-lg drop-shadow-lg shadow-violet-600 rounded-md overflow-hidden">
-                <div className="p-4">
+                <div className="p-4 pb-0">
                   <h3 className="text-lg font-semibold text-purple-700 mb-2">{application.Job.title}</h3>
                   <p className="text-gray-600 mb-4">{application.Job.description}</p>
                   <p className="text-gray-700">Company: {application.Job.companyName}</p>
                   <p className="text-gray-700">Job ID: {application.Job.id}</p>
                   <p className="text-gray-700">Status: {application.status}</p>
-                  <button onClick={() => handleDelete(application.id)} className="bg-purple-400 text-white py-2 px-4 rounded-md hover:bg-purple-300 focus:outline-none focus:ring focus:border-blue-300">
-                    Delete
-                  </button>
+                    <div className='flex justify-between'>
+                      <button onClick={() => handleDelete(application.id)} className="bg-purple-400 text-white py-2 px-4 rounded-md hover:bg-purple-300 focus:outline-none focus:ring focus:border-blue-300">
+                        Delete
+                      </button>
+
+                      <button className="bg-purple-400 text-white py-2 px-4 rounded-md hover:bg-purple-300 focus:outline-none focus:ring focus:border-blue-300">
+                      {application.status}
+                      </button>
+                    </div>
+                    {application.status == "accepted" ?
+                    
+                     <div className=' text-center text-lg italic font-bold'>
+                     <IoCheckmarkDoneCircleSharp className='inline text-2xl text-green-600' /> Congratulation Your Job Application Is Accepted By {application.Job.companyName}🎊👍✨
+                    </div> :''}
+                    {application.status == "rejected" ? <div className=' text-center text-lg italic font-bold'>
+                    <MdCancel className='inline text-2xl text-red-600' /> Sorry Your Job Application Is Rejected By {application.Job.companyName}
+                    </div> :''}
+                    
                 </div>
               </div>
             ))}

@@ -54,7 +54,7 @@ function AdmineJob() {
     <>
       <Navbar />
       <h2 className="sticky top-20 z-50 mx-10 my-8 p-3 text-3xl text-center font-bold text-sky-400 border-2 border-sky-400 bg-neutral-100 shadow-md shadow-sky-500 rounded-lg transition-transform duration-1000 ease-in-out">
-        Create New Job
+       ---------- Create New Job ----------
       </h2>
 
       <div className="flex justify-center items-center min-h-screen ">
