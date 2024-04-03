@@ -4,6 +4,7 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import JobForHome from "./JobForHome";
 import Scroll from "../../Scroll";
+import Feature from "./Feature";
 
 const slide = ["./1.webp", "./2.webp"];
 
@@ -13,7 +14,7 @@ const HomePage = () => {
       <section className="bg-purple-300 text-white py-16 pt-3">
         <div className="text-center mb-8">
           <h1 className="animated-text ">
-            <span className="shadow-xl shadow-fuchsia-700">
+            <span className="shadow-xl  shadow-fuchsia-700  sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl">
               Explore Opportunities With Top Companies!
             </span>
           </h1>
@@ -49,13 +50,16 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+          
+       <Feature/>
+            
       </section>
 
       {/* Featured Jobs Section */}
-      <section className="py-16">
+      <section className="py-5">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-8">
-            Featured Jobs
+          <h2 className="sticky top-20 z-50 mx-10 my-8 p-3 text-3xl text-center font-bold text-purple-400 border-2 border-purple-400 bg-neutral-100 shadow-md shadow-purple-500 rounded-lg transition-transform duration-1000 ease-in-out">
+            ---------- Featured Jobs ----------
           </h2>
           <JobForHome />
         </div>
