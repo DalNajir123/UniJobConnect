@@ -6,7 +6,8 @@ import { TbLogout } from "react-icons/tb";
 export default function Navbar() {
     const navigate = useNavigate();
     const logout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
+        localStorage.removeItem("Role");
         toast.success('Logout Successfully');
         navigate('/');
     };

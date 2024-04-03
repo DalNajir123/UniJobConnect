@@ -16,22 +16,26 @@ import User from './Components/Admine/User.jsx';
 import AdmineProfile from './Components/Admine/AdmineProfile.jsx';
 import Jobs from './Components/Job/Jobs.jsx';
 import Application from './Components/Application/Application.jsx';
+import PageNotFound from './PageNotFound.jsx';
+import ProtectedRoutes from './ProtectedRoutes.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
     <Route path='/' element={<Layout />}>
-      <Route path='' element={<Home />} />
+      <Route path='' element={<Home/>} />
       <Route path='login' element={<Login />} />
       <Route path='Ragistration' element={<SignUp />} />
       <Route path='profile' element={<Profile />} />
       <Route path='Jobs' element={<Jobs />} />
       <Route path='application' element={<Application />} />
     </Route>
-    <Route path='admine' element={<Admine/>}/>
-    <Route path='admin-job' element={<AdmineJob/>}/>
-    <Route path='user-application' element={<User/>}/>
-    <Route path='admine-profile' element={<AdmineProfile/>}/>
+    
+    <Route path='admine' element={<ProtectedRoutes Component={Admine} />}/>
+    <Route path='admin-job' element={<ProtectedRoutes Component={AdmineJob} />}/>
+    <Route path='user-application' element={<ProtectedRoutes Component={User} />}/>
+    <Route path='admine-profile' element={<ProtectedRoutes Component={AdmineProfile} />}/>
+    <Route path='pageNoteFound' element={<PageNotFound/>}/>
     </>
   )
 )

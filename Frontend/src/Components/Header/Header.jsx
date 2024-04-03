@@ -4,10 +4,14 @@ import { toast } from "react-toastify";
 import Logo from "../Logo/Logo";
 
 export default function Header() {
+
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("Role");
     toast.success("Logout Successfully");
     navigate("/");
   };
