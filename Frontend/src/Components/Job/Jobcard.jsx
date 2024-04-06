@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {toast} from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import Scroll from '../../Scroll'
- 
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate
+import { ImLocation2 } from "react-icons/im";
+import Scroll from "../../Scroll";
+
 function JobCard() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJobType, setSelectedJobType] = useState("all");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use useNavigate hook
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -18,26 +19,32 @@ function JobCard() {
       .catch((err) => console.log(err));
   }, []);
 
-    const applyJob = async (jobId) => {
-      const headers = { Authorization: token };
-      try {
-        const response = await axios.post(`http://localhost:8080/application/create/${jobId}`, {}, { headers });
-        console.log(response);
-        navigate('/application')
-        toast.success(response.data.message);
-  
-      } catch (error) {
-        toast.error(error.response.data.message)
-      }
-    };
+  const applyJob = async (jobId) => {
+    const headers = { Authorization: token };
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/application/create/${jobId}`,
+        {},
+        { headers }
+      );
+      console.log(response);
+      navigate("/application");
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   const filteredData = data.filter((job) => {
-    const titleMatch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const jobTypeMatch = selectedJobType === "all" || job.jobType === selectedJobType;
+    const titleMatch = job.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const jobTypeMatch =
+      selectedJobType === "all" || job.jobType === selectedJobType;
     return titleMatch && jobTypeMatch;
   });
 
-  const jobTypes = ["all", "fullTime","partTime"];
+  const jobTypes = ["all", "fullTime", "partTime"];
   return (
     <section className="py-16 bg-purple-200">
       <div className="container mx-auto">
@@ -72,32 +79,55 @@ function JobCard() {
           </select>
         </div>
 
+        {/* Display job cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredData.map((job, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-lg shadow-slate-600 hover:bg-purple-300 hover:text-white transition transform hover:scale-105"
+              className="bg-neutral-100 p-2 border-4 border-black rounded-lg shadow-lg shadow-slate-700 hover:text-white hover:scale-105 transition transform duration-500"
             >
-              <h3 className="text-2xl  font-semibold mb-4">
+              <h3 className="text-xl p-1 rounded-lg bg-purple-300 font-extrabold mb-2">
                 {job.title}
               </h3>
-              <p className="text-gray-700 mb-6">{job.description}</p>
-              <p className="text-gray-700 mb-2">Company: {job.companyName}</p>
-              <p className="text-gray-700 mb-2">Requirements: {job.requirements}</p>
-              <p className="text-gray-700 mb-2">Job Type: {job.jobType}</p>
-              <p className="text-gray-700 mb-2">Location Type: {job.locationType}</p>
-              <p className="text-gray-700 mb-2">Address: {job.address}</p>
-              <p className="text-gray-700 mb-2">City: {job.city}</p>
-              <p className="text-gray-700 mb-2">State: {job.state}</p>
-              <p className="text-gray-700 mb-2">Country: {job.country}</p>
-              <button onClick={token ? () => applyJob(job.id) : () => navigate('/login')} className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300">
-                Apply Now
-              </button>
+              <div className="bg-purple-200 rounded-lg p-1 mb-2 border-2 border-black">
+                <p className="font-semibold text-black mb-2">
+                  {job.description}
+                </p>
+                <p className="text-gray-700 mb-1">
+                  <span className="text-black font-medium">Company:</span>{" "}
+                  {job.companyName}
+                </p>
+                <p className="text-gray-700 mb-1">
+                  <span className="text-black font-medium">Requirements: </span>
+                  {job.requirements}
+                </p>
+                <p className="font-semibold text-black text-lg">
+                  <ImLocation2 className="inline text-sky-400" />
+                  {job.country}
+                </p>
+              </div>
+              <div className="flex justify-between">
+                <button
+                  onClick={
+                    token ? () => applyJob(job.id) : () => navigate("/login")
+                  }
+                  className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-400 focus:outline-none focus:ring focus:border-blue-300"
+                >
+                  Apply Now
+                </button>
+                {/* Use Link to navigate to SingleJob page */}
+                <Link
+                  to={`/job/${job.id}`}
+                  className="block mt-4 text-center text-blue-600 hover:underline"
+                >
+                  View More
+                </Link>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <Scroll/>
+      <Scroll />
     </section>
   );
 }
