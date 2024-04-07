@@ -21,4 +21,13 @@
       transform: translateY(0);
     }
   }
+
+  .swipe-top-to-bottom {
+    transition: transform 0.5s ease;
+  }
+  
+  .swipe-top-to-bottom:hover {
+    transform: translateY(50%);
+  }
+  
   

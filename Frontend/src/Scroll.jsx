@@ -5,7 +5,7 @@ import { RxDoubleArrowUp } from "react-icons/rx";
 import { LuArrowUpFromDot } from "react-icons/lu";
 import { HiArrowUturnUp } from "react-icons/hi2";
 
-function ScrollToTopButton() {
+function ScrollToTopButton({color}) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -54,7 +54,8 @@ function ScrollToTopButton() {
         {/* <LuArrowUpFromDot className='text-5xl' /> */}
         {/* <RxDoubleArrowUp className='text-5xl' /> */}
         {/* <FaArrowUp className='text-5xl' /> */}
-        <FaRegArrowAltCircleUp className="text-5xl text-black" />
+        {/* <FaRegArrowAltCircleUp className="text-5xl text-black" /> */}
+        <FaRegArrowAltCircleUp className={`text-5xl text-black`} />
       </button>
     </>
   );

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import JobForHome from "./JobForHome";
 import Scroll from "../../Scroll";
 import Feature from "./Feature";
+import TopCompany from "./TopCompany";
 
 const slide = ["./1.webp", "./2.webp"];
 
@@ -31,40 +32,27 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="bg-purple-400 text-white py-16">
+      <Feature />
+
+      <section className="bg-purple-400 text-white mt-12  py-10">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">Find Your Dream Jobs</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            " Find Your Dream Jobs And Discover Your Next Career Move "
+          </h2>
           <p className="text-lg mb-8">
             Browse through thousands of job listings and discover opportunities
             that match your skills.
           </p>
-          <div className="max-w-md mx-auto">
-            {/* Search Bar */}
-            <div className="flex items-center border rounded overflow-hidden">
-              <input
-                type="text"
-                placeholder="Search for jobs..."
-                className="w-full p-3 focus:outline-offset-2 from-fuchsia-950"
-              />
-              <button className="bg-blue-600 text-white p-3">Search</button>
-            </div>
-          </div>
         </div>
-          
-       <Feature/>
-            
       </section>
 
       {/* Featured Jobs Section */}
-      <section className="py-5">
+      <section className="mb-10 mt-10 p-10 pt-3 transition duration-1000 ease-in-out hover:bg-gradient-to-b hover:from-black hover:to-purple-600">
         <div className="container mx-auto">
-          <h2 className="sticky top-20 z-50 mx-10 my-8 p-3 text-3xl text-center font-bold text-purple-400 border-2 border-purple-400 bg-neutral-100 shadow-md shadow-purple-500 rounded-lg transition-transform duration-1000 ease-in-out">
-            ---------- Featured Jobs ----------
-          </h2>
           <JobForHome />
         </div>
       </section>
-
+          
       {/* Call-to-Action Section */}
       {localStorage.getItem("token") ? (
         ""
@@ -93,7 +81,9 @@ const HomePage = () => {
           </section>
         </>
       )}
+      <TopCompany />
       <Scroll />
+      
     </div>
   );
 };

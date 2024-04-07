@@ -58,21 +58,22 @@ function JobCard() {
             that match your skills.
           </p>
         </div>
+
         {/* Search Bar and Job Type Filter */}
-        <div className="mb-6 flex justify-center space-x-4">
+        <div className="sticky top-20 z-50 mb-6 flex justify-center space-x-4">
           <input
             type="text"
-            placeholder="Search for a job..."
-            className="px-4 py-2 text-black border border-purple-400 rounded-md w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 focus:outline-none focus:ring focus:border-purple-700"
+            placeholder="🔍 Search for a job..."
+            className="w-full px-4 py-3 border border-purple-400 rounded-lg focus:outline-none bg-opacity-10 hover:text-white hover:bg-fuchsia-300 focus:border-purple-700 transition-colors duration-500"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <select
             value={selectedJobType}
             onChange={(e) => setSelectedJobType(e.target.value)}
-            className="px-4 py-2 text-black border border-purple-400 rounded-md focus:outline-none focus:ring focus:border-purple-700"
+            className="px-4 py-2 text-black border hover:bg-fuchsia-300 border-purple-400 rounded-md focus:outline-none focus:border-purple-700 transition-colors duration-500"
           >
             {jobTypes.map((type) => (
-              <option key={type} value={type}>
+              <option key={type} value={type} className="bg-purple-200">
                 {type === "all" ? "All Job Types" : type}
               </option>
             ))}
@@ -127,7 +128,7 @@ function JobCard() {
           ))}
         </div>
       </div>
-      <Scroll />
+      <Scroll color="bg-purple-800"/>
     </section>
   );
 }
