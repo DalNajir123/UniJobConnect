@@ -1,6 +1,7 @@
 const { Op } = require("sequelize");
 const Application = require("../../../../sequelize/models/application");
 const Job = require("../../../../sequelize/models/job");
+const User = require("../../../../sequelize/models/user");
 
 const getApplicationsAdmin = async (req, res) => {
   try {
@@ -23,6 +24,10 @@ const getApplicationsAdmin = async (req, res) => {
         {
           model: Job,
           where: whereClause,
+          required: true,
+        },
+        {
+          model: User,
           required: true,
         },
       ],
