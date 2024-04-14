@@ -7,7 +7,7 @@ import Scroll from "../../Scroll";
 import Feature from "./Feature";
 import TopCompany from "./TopCompany";
 
-const slide = ["./1.webp", "./2.webp"];
+const slide = ["./1.webp", "./2.webp","./3.jpg","./4.jpg","./5.jpg","./6.jpg"];
 
 const HomePage = () => {
   return (

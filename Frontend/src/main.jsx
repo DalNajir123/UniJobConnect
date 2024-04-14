@@ -19,6 +19,7 @@ import Application from './Components/Application/Application.jsx';
 import PageNotFound from './PageNotFound.jsx';
 import ProtectedRoutes from './ProtectedRoutes.jsx';
 import SingleJob from './Components/Job/SingleJob.jsx';
+import ChangePassword from './Components/Profile/ChangePassword.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
       <Route path='application' element={<Application />} />
       {/* <Route path='/job-detail/${jobId}' element={<SingleJob />} /> */}
       <Route path="/job/:jobId" element={<SingleJob />} />
+      <Route path="/change-password" element={<ChangePassword/>} />
     </Route>
     
     <Route path='admine' element={<ProtectedRoutes Component={Admine} />}/>
