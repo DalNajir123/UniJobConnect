@@ -3,7 +3,7 @@ import axios from "axios";
 import Logo from "../Logo/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { VscAccount } from "react-icons/vsc";
+
 const SignUp = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -53,7 +53,6 @@ const SignUp = () => {
           <h2 className="text-3xl font-bold text-center text-gray-800 mt-5"> 
             <Logo />
             Registration
-            <VscAccount className="text-white" />
           </h2>
 
           <div className="mb-4">

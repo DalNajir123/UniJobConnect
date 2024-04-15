@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Login from "../Login/Login";
 import { Link } from "react-router-dom";
+import { VscAccount } from "react-icons/vsc";
 
 function Profile() {
   const [data, setData] = useState([]);
@@ -30,7 +31,8 @@ function Profile() {
         <h2 className="text-xl font-bold mb-2">Profile Information</h2>
         <hr className="mb-4"/>
         <div className="flex items-center mb-4">
-          <img className="w-12 h-12 rounded-full mr-4" src="https://via.placeholder.com/150" alt="Profile" />
+        <VscAccount className="w-10 h-10 mr-4 text-black" />
+          {/* <img className=" rounded-full mr-4" src="https://via.placeholder.com/150" alt="Profile" /> */}
           <div>
             <p className="text-lg font-semibold">{data.firstName} {data.lastName}</p>
             <p className="text-gray-600">{data.email}</p>
@@ -38,7 +40,7 @@ function Profile() {
         </div>
         <div>
           <p className="text-sm text-gray-700 mb-1">Bio:</p>
-          <p className="text-gray-800">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ligula eget sem ultrices fermentum eu et tellus.</p>
+          <p className="text-gray-800"> Strong leadership abilities, empowering teams to collaborate effectively and achieve project goals. Experience in risk management, identifying potential issues early and implementing mitigation strategies to minimize disruptions.</p>
         </div>
       </div>
       <div>

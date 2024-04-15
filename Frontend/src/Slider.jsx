@@ -41,7 +41,7 @@ const Slider = ({children: slide, autoSlide = false, autoSlideInterval = 2000}) 
               onClick={()=>{
                 setCurrent(i);
               }}  
-              key={i} className={`transition-all w-2.5 h-2.5 bg-zinc-800 rounded-full ${current === i ? "px-2.5" : "bg-opacity-50"}`}/>
+              key={i} className={`transition-all w-2.5 h-2.5 bg-white rounded-full ${current === i ? "px-2.5" : "bg-opacity-50"}`}/>
           ))}
         </div>
       </div>

@@ -3,7 +3,7 @@ import Slider from "../../Slider";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import JobForHome from "./JobForHome";
-import Scroll from "../../Scroll";
+import ScrollToTopButton from "../../Scrolluser";
 import Feature from "./Feature";
 import TopCompany from "./TopCompany";
 
@@ -22,7 +22,7 @@ const HomePage = () => {
         </div>
 
         <div className="flex justify-center items-center  ">
-          <div className="w-[60%] ">
+          <div className="w-[45%] ">
             <Slider autoSlide={true}>
               {slide.map((s, i) => (
                 <img key={i} src={s} />
@@ -82,8 +82,12 @@ const HomePage = () => {
         </>
       )}
       <TopCompany />
-      <Scroll />
-      
+      <section className="bg-purple-300 text-white mt-5 py-16 pt-3">
+        <div className="text-center mb-8"> 
+        </div>
+      </section>
+
+      <ScrollToTopButton/>
     </div>
   );
 };

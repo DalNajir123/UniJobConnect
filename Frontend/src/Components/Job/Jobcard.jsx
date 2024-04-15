@@ -3,11 +3,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate
 import { ImLocation2 } from "react-icons/im";
-import Scroll from "../../Scroll";
+import ScrollToTopButton from "../../Scrolluser";
 
 function JobCard() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [job, setJob] = useState('')
   const [selectedJobType, setSelectedJobType] = useState("all");
   const navigate = useNavigate(); // Use useNavigate hook
   const token = localStorage.getItem("token");
@@ -15,7 +16,7 @@ function JobCard() {
   useEffect(() => {
     axios
       .get("http://localhost:8080/job/get")
-      .then((res) => setData(res.data.data))
+      .then((res) => {setData(res.data.data);setJob(res.data.pagination.totalCount);})
       .catch((err) => console.log(err));
   }, []);
 
@@ -48,15 +49,18 @@ function JobCard() {
   return (
     <section className="py-16 bg-purple-200">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
+        <h2 className="text-4xl font-extrabold p-3 rounded-xl bg-neutral-100 text-center border-2 border-white text-gray-900 mb-3">
           Explore Exciting Opportunities to Shape Your Career
         </h2>
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">Find Your Dream Jobs</h2>
+        <div className="container mx-auto text-center"> 
+          <h2 className="text-4xl font-bold border-2 p-2 rounded-xl bg-neutral-100 border-white mb-4">Find Your Dream Jobs</h2>
           <p className="text-lg mb-8">
             Browse through thousands of job listings and discover opportunities
             that match your skills.
           </p>
+        </div>
+        <div className="">
+        <h1 className="text-2xl inline-block font-bold p-2 mb-3 rounded-lg border-2 border-black bg-neutral-100">Total Jobs <span className="bg-purple-300 px-3 py-1 border-2 border-black rounded-2xl">{job}</span></h1>
         </div>
 
         {/* Search Bar and Job Type Filter */}
@@ -121,14 +125,14 @@ function JobCard() {
                   to={`/job/${job.id}`}
                   className="block mt-4 text-center text-blue-600 hover:underline"
                 >
-                  View More
+                  See Detail
                 </Link>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <Scroll color="bg-purple-800"/>
+      <ScrollToTopButton/>
     </section>
   );
 }
