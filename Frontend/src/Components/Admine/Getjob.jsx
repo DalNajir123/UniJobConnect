@@ -117,8 +117,11 @@ function Getjob(props) {
     <div className="container mx-auto">
       <div className="mt-3">
         <h2 className="sticky top-20 z-50  my-10 p-3 text-3xl text-center font-bold text-sky-400 border-2 border-sky-400 bg-neutral-100 shadow-md shadow-sky-500 rounded-lg transition-transform duration-1000 ease-in-out">
-          ---------- Your Posted Job ---------- [{totalJob}]
+          ---------- Your Posted Job ----------
         </h2>
+        <div className="">
+        <h1 className="text-2xl inline-block font-bold p-2 mb-3 rounded-lg border-2 border-black bg-neutral-100">Total Posted Jobs <span className="bg-sky-300 px-3 py-1 border-2 border-black rounded-2xl">{totalJob}</span></h1>
+        </div>
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto border-4 border-black  border-collapse hover:shadow-md transition duration-300 mb-7">
             <thead>

@@ -16,7 +16,7 @@ export default function Footer() {
                     <span className="text-sm text-white hover:text-gray-900 sm:text-center font-bold">
                         © 2024
                         <a href="https://dalnajir.com/" className="hover:underline">
-                            Dal_Najir
+                            Job_Portal
                         </a>
                         . All Rights Reserved.
                     </span>

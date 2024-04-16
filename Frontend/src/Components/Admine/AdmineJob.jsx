@@ -57,8 +57,8 @@ function AdmineJob() {
        ---------- Create New Job ----------
       </h2>
 
-      <div className="flex justify-center items-center min-h-screen ">
-        <div className="w-full md:max-w-md p-8 bg-sky-300 border-4 border-black rounded-lg">
+      <div className="flex justify-center items-center mb-5 ">
+        <div className="w-full md:max-w-md pt-5 p-8 bg-sky-300 border-4 border-black rounded-lg">
           <form className="space-y-6" onSubmit={createJob}>
             <h2 className="text-3xl bg-white rounded-md p-2 font-bold text-center text-sky-500 mt-3 border-2 border-black">
               Fill Job Information

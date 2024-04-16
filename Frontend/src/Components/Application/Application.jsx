@@ -50,7 +50,7 @@ function Application() {
     <>
       <div className="w-full min-h-screen bg-purple-300 flex justify-center">
         <div className="max-w-7xl w-full px-4">
-          <h2 className="sticky top-20 z-50 mx-10 my-8 p-3 text-3xl text-center font-bold text-black border-2 border-purple-400 bg-neutral-100 shadow-md shadow-purple-500 rounded-lg transition-transform duration-1000 ease-in-out">
+          <h2 className="sticky top-20 z-50 mx-1 my-8 p-3 text-3xl text-center font-bold text-black border-2 border-purple-400 bg-neutral-100 shadow-md shadow-purple-500 rounded-lg transition-transform duration-1000 ease-in-out">
             Your Applying Job Application
           </h2>
           
@@ -61,23 +61,23 @@ function Application() {
             {applications.map((application) => (
               <div
                 key={application.id}
-                className="bg-white border-2  border-black pb-1 shadow-lg drop-shadow-lg shadow-violet-600 rounded-md overflow-hidden"
+                className="bg-white border-2 mb-4 border-black pb-1 shadow-lg drop-shadow-lg shadow-violet-600 rounded-md overflow-hidden"
               >
-                <div className="p-4 pb-0">
+                <div className="bg-white  p-8 pt-4 px-2 pb-0">
                   <h3 className="text-lg font-semibold text-purple-700 mb-2">
                     {application.Job.title}
                   </h3>
-                  <div className="bg-neutral-100 border-black p-2 rounded-lg mb-1 border-2">
-                    <p className="text-gray-600 mb-4">
+                  <div className="bg-neutral-50 border-black p-2 rounded-lg mb-1 border-2">
+                    <p className=" mb-2">
                       {application.Job.description}
                     </p>
-                    <p className="text-gray-700">
+                    <p className="">
                       Company: {application.Job.companyName}
                     </p>
-                    <p className="text-gray-700">
+                    <p className="">
                       Job ID: {application.Job.id}
                     </p>
-                    <p className="text-gray-700">
+                    <p className="">
                       Status: {application.status}
                     </p>
                   </div>

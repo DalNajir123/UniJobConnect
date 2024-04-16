@@ -4,9 +4,6 @@ import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import Scroll from "../../Scroll.jsx";
 import { toast } from "react-toastify";
-import { MdDeleteForever } from "react-icons/md";
-import { GiCancel } from "react-icons/gi";
-import { MdOutlineDone } from "react-icons/md";
 
 
 
@@ -90,25 +87,28 @@ function User() {
   return (
     <>
       <Navbar />
-      <h2 className="sticky top-20 z-50 mx-16 my-10 p-3 text-3xl text-center font-bold text-sky-400 border-2 border-sky-400 bg-neutral-100 shadow-md shadow-sky-500 rounded-lg transition-transform duration-1000 ease-in-out">
-       ---------- User-Applications ----------[{totalJOb}]
+      <h2 className="sticky top-20 z-50 mx-16 my-8 p-3 text-3xl text-center font-bold text-sky-400 border-2 border-sky-400 bg-neutral-100 shadow-md shadow-sky-500 rounded-lg transition-transform duration-1000 ease-in-out">
+       ---------- Manage User-Applications ----------
       </h2>
-
-      <div className="container mx-auto mt-8">
+      <div className="ml-[70px] m-0">
+        <h1 className="text-2xl inline-block font-bold p-2 mb-3 rounded-lg border-2 border-black bg-neutral-100">Total Available userApplication <span className="bg-sky-300 px-3 py-1 border-2 border-black rounded-2xl">{totalJOb}</span></h1>
+        </div>
+      <div className="container mx-auto mt-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {applications.map((application) => (
             <div
               key={application.id}
               className="bg-sky-200 rounded-lg border-2 border-zinc-900 shadow-md shadow-zinc-800 mb-4 p-4 transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
+              {/* Job Details */}
               <h3 className="text-2xl border-2 border-black text-sky-500 text-center font-bold mb-2 bg-white rounded-md p-1">
                 Job Details
               </h3>
               <div className="bg-sky-300 rounded-lg border-4 border-white p-2">
-                <h3 className="text-xl font-bold mb-2">
+                <h3 className="text-xl font-bold mb-1">
                   {application.Job.title}
                 </h3>
-                <p className="text-gray-700">{application.Job.description}</p>
+                {/* <p className="text-gray-700">{application.Job.description}</p> */}
                 <p className="text-gray-700">
                   <span className="text-black text-lg font-semibold">
                     Company:{" "}
@@ -135,35 +135,35 @@ function User() {
                 </p>
                 <p className="text-gray-700">
                   <span className="text-black text-lg font-semibold">
+                    JobId:{" "}
+                  </span>
+                  {application.jobId}
+                </p>
+                <p className="text-gray-700">
+                  <span className="text-black text-lg font-semibold">
                     Address:{" "}
                   </span>
                   {application.Job.address} {application.Job.city}{" "}
                   {application.Job.state} {application.Job.country}
                 </p>
-                <p className="text-gray-700">
+                {/* <p className="text-gray-700">
                   <span className="text-black text-lg font-semibold">
                     JobCreatedBy:{" "}
                   </span>
                   {application.Job.createdBy}
-                </p>
+                </p> */}
               </div>
               <hr className="my-2 border-gray-900 sm:mx-auto lg:my-4" />
-
+              {/* Application Details */}
               <h3 className="text-2xl text-center border-2 border-black text-sky-500 font-bold mb-2 bg-white rounded-md p-1">
                 Application Details
               </h3>
-              <div className="bg-sky-300 rounded-lg border-4 border-white p-2">
+              <div className="bg-sky-300 text-base rounded-lg border-4 border-white p-2">
                 <p className="text-gray-700">
                   <span className="text-black text-lg font-semibold">
                     Application_Id:{" "}
                   </span>
                   {application.id}
-                </p>
-                <p className="text-gray-700">
-                  <span className="text-black text-lg font-semibold">
-                    JobId:{" "}
-                  </span>
-                  {application.jobId}
                 </p>
                 <p className="text-gray-700">
                   <span className="text-black text-lg font-semibold">
@@ -179,11 +179,24 @@ function User() {
                 </p>
                 <p className="text-gray-700">
                   <span className="text-black text-lg font-semibold">
-                    Time:{" "}
+                  FullName:{" "}
                   </span>
-                  {application.createdAt}
+                  {application.User.firstName}{" "}{application.User.lastName}
+                </p>
+                <p className="text-gray-700">
+                  <span className="text-black text-lg font-semibold">
+                    Email:{" "}
+                  </span>
+                  {application.User.email}
+                </p>
+                <p className="text-gray-700">
+                  <span className="text-black text-lg font-semibold">
+                    Phone:{" "}
+                  </span>
+                  {application.User.phone}
                 </p>
               </div>
+              {/* buttons */}
               <div className="flex justify-between mt-4">
                 <div className="flex">
                   <button
@@ -192,14 +205,14 @@ function User() {
                 >
                   Accepted
                 </button>
-                {/* <MdOutlineDone className="text-5xl text-green-600 transition duration-700 hover:scale-125" /> */}
+               
                 <button
                   onClick={() => updateStatus(application.id, "rejected")}
                   className="py-2 px-4 bg-gradient-to-r from-zinc-500 to-sky-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-900 transition-transform duration-700 ease-in-out transform hover:scale-110"
                 >
                   Rejected
                 </button>
-                {/* <GiCancel className="text-5xl text-red-500 transition duration-700 hover:scale-125 " /> */}
+                
                 </div>
                 <div>
                   <button
@@ -208,13 +221,14 @@ function User() {
                 >
                   Delete
                 </button>
-                {/* <MdDeleteForever className="text-5xl text-red-700 transition duration-700 hover:scale-125 " /> */}
+                
                 </div>
                 
               </div>
             </div>
           ))}
         </div>
+        {/* pagination */}
         <div className="flex justify-center mt-8">
           <div className=" p-2 px-10 rounded-lg mb-5">
             {Array.from({ length: totalPages }, (_, index) => (

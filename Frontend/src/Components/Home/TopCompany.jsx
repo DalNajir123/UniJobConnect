@@ -15,7 +15,7 @@ function TopCompany() {
       <h1 className='text-5xl p-4 shadow-xl shadow-red-500 rounded-xl text-sky-500 bg-white'>Facebook</h1>
       <h1 className='text-5xl p-4 shadow-xl shadow-red-500 rounded-xl bg-white text-amber-950'>Amazon</h1>
       <h1 className='text-5xl p-4 shadow-xl shadow-red-500 rounded-xl bg-white text-orange-400'>Infosys</h1>
-      <h1 className='text-5xl p-4 shadow-xl shadow-red-500 rounded-xl bg-white text-rose-500'>Vipro</h1>
+      <h1 className='text-5xl p-4 shadow-xl shadow-red-500 rounded-xl bg-white text-rose-500'>Wipro</h1>
       </div>
      </marquee>
      </div>

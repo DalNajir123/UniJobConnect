@@ -1,64 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Login from "../Login/Login";
+import { Link } from "react-router-dom";
+import { VscAccount } from "react-icons/vsc";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-function AdminProfile() {
+function Profile() {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem('token');
+  const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const headers = { Authorization: token };
     axios
-      .get('http://localhost:8080/user/self-data', { headers })
-      .then((res) => setData(res.data.data))
+      .get("http://localhost:8080/user/self-data", { headers })
+      .then((res) => {
+        setData(res.data.data);
+        setLoading(false);
+      })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token]);
 
   return (
     <>
-      <Navbar />
-      {token ? (
-        <>
-        {loading && (
-          <div className="animate-pulse bg-gray-200 p-4 rounded-lg text-center">
-            Loading profile data...
-          </div>
-        )}
-        <div className={`profile-container ${loading ? 'pulse' : 'fadeIn'}`}>
-          <div className="profile-card">
-            <h2 className="profile-title">Admin Profile</h2>
-            <div className="profile-info">
-              <strong>ID:</strong> {data.id}
-            </div>
-            <div className="profile-info">
-              <strong>Name:</strong> {data.firstName} {data.lastName}
-            </div>
-            <div className="profile-info">
-              <strong>Email:</strong> {data.email}
-            </div>
-            <div className="profile-info">
-              <strong>Phone:</strong> {data.phone}
-            </div>
-            <div className="profile-info">
-              <strong>Role:</strong> {data.role}
-            </div>
-            <div className="profile-info">
-              <strong>Created At:</strong> {data.createdAt}
-            </div>
-            <div className="profile-info">
-              <strong>Updated At:</strong> {data.updatedAt}
-            </div>
+    <Navbar/>
+    {token ? (
+         <>
+         <div className="flex items-center justify-center bg-gradient-to-r from-pink-400 via-blue-500 to-indigo-600">
+
+    <div className="bg-white shadow-md rounded mt-4 px-8 pt-6 pb-7 mb-4 max-w-md mx-auto">
+      <div className="mb-4">
+        <h2 className="text-xl font-bold mb-2">Profile Information</h2>
+        <hr className="mb-4"/>
+        <div className="flex items-center mb-4">
+        <VscAccount className="w-10 h-10 mr-4 text-black" />
+          {/* <img className=" rounded-full mr-4" src="https://via.placeholder.com/150" alt="Profile" /> */}
+          <div>
+            <p className="text-lg font-semibold">{data.firstName} {data.lastName}</p>
+            <p className="text-gray-600">{data.email}</p>
           </div>
         </div>
-        </>
+        <div>
+          <p className="text-sm text-gray-700 mb-1">Bio:</p>
+          <p className="text-gray-800"> Strong leadership abilities, empowering teams to collaborate effectively and achieve project goals. Experience in risk management, identifying potential issues early and implementing mitigation strategies to minimize disruptions.</p>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-xl font-bold mb-2">Account Information</h2>
+        <hr className="mb-4"/>
+        <div className="mb-4">
+          <p className="text-sm text-gray-700">Username:</p>
+          <p className="text-gray-800 font-semibold">{data.firstName} {data.lastName}</p>
+        </div>
+        <div className="mb-4">
+          <p className="text-sm text-gray-700">Email:</p>
+          <p className="text-gray-800 font-semibold">{data.email}</p>
+        </div>
+        <div>
+          <p className="text-sm text-gray-700">Phone:</p>
+          <p className="text-gray-800 font-semibold">+91 {data.phone}</p>
+        </div>
+        <Link to="/admine-password">
+         <button className="bg-neutral-300 p-2 mt-2 rounded-lg transition transform duration-700 hover:scale-105 ">
+           ChangePassword
+         </button>
+        </Link>
+      </div>
+    </div>
+    </div>
+    </>
       ) : (
-        <h1>Please Login</h1>
+        <Login />
       )}
-      <Footer />
+      <Footer/>
     </>
   );
 }
 
-export default AdminProfile;
+export default Profile;

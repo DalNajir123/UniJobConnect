@@ -20,6 +20,7 @@ import PageNotFound from './PageNotFound.jsx';
 import ProtectedRoutes from './ProtectedRoutes.jsx';
 import SingleJob from './Components/Job/SingleJob.jsx';
 import ChangePassword from './Components/Profile/ChangePassword.jsx';
+import ChangePass from './Components/Admine/ChangePass.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,7 +32,6 @@ const router = createBrowserRouter(
       <Route path='profile' element={<Profile />} />
       <Route path='Jobs' element={<Jobs />} />
       <Route path='application' element={<Application />} />
-      {/* <Route path='/job-detail/${jobId}' element={<SingleJob />} /> */}
       <Route path="/job/:jobId" element={<SingleJob />} />
       <Route path="/change-password" element={<ChangePassword/>} />
     </Route>
@@ -40,6 +40,7 @@ const router = createBrowserRouter(
     <Route path='admin-job' element={<ProtectedRoutes Component={AdmineJob} />}/>
     <Route path='user-application' element={<ProtectedRoutes Component={User} />}/>
     <Route path='admine-profile' element={<ProtectedRoutes Component={AdmineProfile} />}/>
+    <Route path='admine-password' element={<ProtectedRoutes Component={ChangePass} />}/>
     <Route path='pageNoteFound' element={<PageNotFound/>}/>
     </>
   )

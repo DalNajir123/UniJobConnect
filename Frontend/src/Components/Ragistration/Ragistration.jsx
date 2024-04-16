@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Logo from "../Logo/Logo";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Logo from "../Logo/Logo";
+import { BsEye } from "react-icons/bs";
+import { BsEyeSlash } from "react-icons/bs";
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -14,6 +18,7 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -24,18 +29,17 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password != formData.confirmPassword) {
-      toast.error("Enter Same Password");
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords Do Not Match");
       return;
     }
     try {
-      const responce = await axios.post(
+      const response = await axios.post(
         "http://localhost:8080/user/sign-up",
         formData
       );
-      // console.log(responce);
-      if (responce.data.success == true) {
-        toast.success(responce.data.message);
+      if (response.data.success === true) {
+        toast.success(response.data.message);
         navigate("/login");
       }
     } catch (error) {
@@ -43,11 +47,15 @@ const SignUp = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="flex justify-center items-center h-screen bg-purple-200">
-      <div className="max-w-md w-full relative space-y-8 p-8 bg-purple-400  rounded-md">
+      <div className="max-w-md w-full relative space-y-8 p-8 bg-purple-400 rounded-md">
         <form
-          className=" mt-5 space-y-6 rounded shadow-md w-96"
+          className="mt-5 space-y-6 rounded shadow-md w-96"
           onSubmit={handleSubmit}
         >
           <h2 className="text-3xl font-bold text-center text-gray-800 mt-5"> 
@@ -62,7 +70,7 @@ const SignUp = () => {
               value={formData.firstName}
               onChange={handleChange}
               className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="FirstName"
+              placeholder="First Name"
               required
             />
           </div>
@@ -74,7 +82,7 @@ const SignUp = () => {
               value={formData.lastName}
               onChange={handleChange}
               className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="LastName"
+              placeholder="Last Name"
               required
             />
           </div>
@@ -97,6 +105,12 @@ const SignUp = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
+              onKeyPress={(e) => {
+                // Allow only numbers (key codes 48-57) and backspace (key code 8)
+                if (e.which < 48 || e.which > 57) {
+                  e.preventDefault();
+                }
+              }}
               className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Phone Number"
               minLength="10"
@@ -105,32 +119,44 @@ const SignUp = () => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm pr-10"
               placeholder="Password"
               minLength="8"
               maxLength="16"
               required
             />
+            <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <BsEye className="text-gray-600 text-xl" /> : <BsEyeSlash className="text-gray-500 text-xl" />}
+            </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm pr-10"
               placeholder="Confirm Password"
               minLength="8"
               maxLength="16"
               required
             />
+            <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <BsEye className="text-gray-600 text-xl" /> : <BsEyeSlash className="text-gray-500 text-xl" />}
+            </div>
           </div>
 
           <button
@@ -141,7 +167,7 @@ const SignUp = () => {
           </button>
           <div>
             <h1 className="text-center text-slate-950 text-lg hover:text-white">
-              Already Have Account ?{" "}
+              Already Have an Account?{" "}
               <Link
                 to="/login"
                 className="text-white font-extrabold hover:text-2xl hover:text-slate-900"
